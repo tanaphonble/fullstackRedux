@@ -22,15 +22,15 @@ describe('immutability', () => {
         }
 
         it('is imutable', () => {
-            let state = List.of('Fast 8', 'Your Name')
+            let state = ['Fast 8', 'Your Name']
             let nextState = addMovie(state, '500 Days of Summer')
 
-            expect(nextState).to.equal(List.of(
+            expect(nextState).to.equal([
                 'Fast 8', 'Your Name', '500 Days of Summer'
-            ))
-            expect(state).to.equal(List.of(
+            ])
+            expect(state).to.equal([
                 'Fast 8', 'Your Name'
-            ))
+            ])
         })
     })
 })
