@@ -112,5 +112,21 @@ describe('application logic', () => {
                 entries: List()
             }))
         })
+
+        it('marks winner when just one entry left', () => {
+            const state = Map({
+                vote: Map({
+                    pair: List.of('Fast 8', 'Your Name'),
+                    tally: Map({
+                        'Fast 8': 4, 'Your Name': 2
+                    })
+                }),
+                entries: List()
+            })
+            const nextState = next(state)
+            expect(nextState).to.equal(Map({
+                winner: 'Fast 8'
+            }))
+        })
     })
 })
