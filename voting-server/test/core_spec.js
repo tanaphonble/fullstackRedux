@@ -26,6 +26,46 @@ describe('application logic', () => {
                 entries: List.of('Whiplash')
             }))
         })
+
+        it('puts winner of cutrrent vote back to entries', () => {
+            const state = Map({
+                vote: Map({
+                    pair: List.of('Fast 8', 'Your Name'),
+                    tally: Map({
+                        'Fast 8': 4,
+                        'Your Name': 2
+                    })
+                }),
+                entries: List.of('Sing Street', 'Butterfly Effect', 'Inside Out')
+            })
+            const nextState = next(state)
+            expect(nextState).to.equal(Map({
+                vote: Map({
+                    pair: List.of('Sing Street', 'Butterfly Effect')
+                }),
+                entries: List.of('Inside Out', 'Fast 8')
+            }))
+        })
+
+        it('puts both from tied vote back to entries', () => {
+            const state = Map({
+                vote: Map({
+                    pair: List.of('Fast 8', 'Your Name'),
+                    tally: Map({
+                        'Fast 8': 3,
+                        'Your Name': 3
+                    })
+                }),
+                entries: List.of('Sing Street', 'Butterfly Effect', 'Inside Out')
+            })
+            const nextState = next(state)
+            expect(nextState).to.equal(Map({
+                vote: Map({
+                    pair: List.of('Sing Street', 'Butterfly Effect')
+                }),
+                entries: List.of('Inside Out', 'Fast 8', 'Your Name')
+            }))
+        })
     })
 
     describe('vote', () => {
