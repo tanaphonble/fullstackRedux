@@ -71,45 +71,33 @@ describe('application logic', () => {
     describe('vote', () => {
         it('creates a tally for the voted entry', () => {
             const state = Map({
-                vote: Map({
-                    pair: List.of('Fast 8', 'Your Name')
-                }),
-                entries: List()
+                pair: List.of('Fast 8', 'Your Name')
             })
             const nextState = vote(state, 'Fast 8')
             expect(nextState).to.equal(Map({
-                vote: Map({
-                    pair: List.of('Fast 8', 'Your Name'),
-                    tally: Map({
-                        'Fast 8': 1
-                    })
-                }),
-                entries: List()
+                pair: List.of('Fast 8', 'Your Name'),
+                tally: Map({
+                    'Fast 8': 1
+                })
             }))
         })
 
         it('adds to existing tally for the voted entry', () => {
             const state = Map({
-                vote: Map({
-                    pair: List.of('Fast 8', 'Your Name'),
-                    tally: Map({
-                        'Fast 8': 3,
-                        'Your Name': 2
-                    })
-                }),
-                entries: List()
+                pair: List.of('Fast 8', 'Your Name'),
+                tally: Map({
+                    'Fast 8': 3,
+                    'Your Name': 2
+                })
             })
 
             const nextState = vote(state, 'Fast 8')
             expect(nextState).to.equal(Map({
-                vote: Map({
-                    pair: List.of('Fast 8', 'Your Name'),
-                    tally: Map({
-                        'Fast 8': 4,
-                        'Your Name': 2
-                    })
-                }),
-                entries: List()
+                pair: List.of('Fast 8', 'Your Name'),
+                tally: Map({
+                    'Fast 8': 4,
+                    'Your Name': 2
+                })
             }))
         })
 

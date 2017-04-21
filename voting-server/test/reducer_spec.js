@@ -47,4 +47,29 @@ describe('reducer', () => {
             entries: []
         }))
     })
+
+    it('has an initial state', () => {
+        const action = { type: 'SET_ENTRIES', entries: ['test'] }
+        const nextState = reducer(undefined, action)
+
+        expect(nextState).to.equal(fromJS({
+            entries: ['test']
+        }))
+    })
+
+    it('can be use with reduce', () => {
+        const actions = [
+            { type: 'SET_ENTRIES', entries: ['m1', 'm2'] },
+            { type: 'NEXT' },
+            { type: 'VOTE', entry: 'm1' },
+            { type: 'VOTE', entry: 'm1' },
+            { type: 'VOTE', entry: 'm2' },
+            { type: 'NEXT' }
+        ]
+        const finalState = actions.reduce(reducer, Map())
+
+        expect(finalState).to.equal(fromJS({
+            winner: 'm1'
+        }))
+    })
 })
