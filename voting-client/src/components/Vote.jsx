@@ -4,7 +4,7 @@ import PureRenderMixin from 'react-addons-pure-render-mixin'
 export default class Voting extends Component {
     constructor(props) {
         super(props)
-        this.mixins = [PureRenderMixin]
+        this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this)
     }
 
     getPair() {

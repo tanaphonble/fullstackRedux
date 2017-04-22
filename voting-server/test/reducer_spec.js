@@ -72,4 +72,5 @@ describe('reducer', () => {
             winner: 'm1'
         }))
     })
+
 })
